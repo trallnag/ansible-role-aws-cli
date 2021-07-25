@@ -1,0 +1,11 @@
+argument_specs:
+  main:
+    short_description: Main entry point for the "{{ role_name }}" role
+    options:
+      awscli_version:
+        default: 2.2.22
+        type: raw
+        required: false
+        description: >-
+          Version to install. Check here:
+          <https://github.com/aws/aws-cli/blob/v2/CHANGELOG.rst>.

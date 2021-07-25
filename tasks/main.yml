@@ -1,0 +1,22 @@
+- name: Check if AWS CLI in the correct version is installed
+  shell: |
+    if ! aws --version | grep -c "aws-cli/{{ awscli_version }}"; then
+      echo status=changed
+    fi
+  register: task
+  changed_when: "'status=changed' in task.stdout"
+  notify:
+    - "{{ role_name }} : Install APT dependencies"
+    - "{{ role_name }} : Download archive to tmp"
+    - "{{ role_name }} : Create temporary dir for unpacked archive"
+    - "{{ role_name }} : Unarchive archive to temporary dir"
+    - "{{ role_name }} : Execute install script"
+    - "{{ role_name }} : Check if install succeeded"
+
+- name: Add init block to `~/.profile`
+  blockinfile:
+    path: ~/.profile
+    marker: "# {mark} :: ANSIBLE MANAGED BLOCK :: {{ role_name }}"
+    block: |
+      complete -C '/usr/local/bin/aws_completer' aws
+      export PATH=/usr/local/aws/bin:$PATH
