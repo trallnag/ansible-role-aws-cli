@@ -1,6 +1,6 @@
-[![role](https://img.shields.io/ansible/role/55570)](https://galaxy.ansible.com/trallnag/awscli)
-[![quality](https://img.shields.io/ansible/quality/55570)](https://galaxy.ansible.com/trallnag/awscli)
-[![downloads](https://img.shields.io/ansible/role/d/55570?label=downloads)](https://galaxy.ansible.com/trallnag/awscli)
+[![role](https://img.shields.io/ansible/role/55771)](https://galaxy.ansible.com/trallnag/awscli)
+[![quality](https://img.shields.io/ansible/quality/55771)](https://galaxy.ansible.com/trallnag/awscli)
+[![downloads](https://img.shields.io/ansible/role/d/55771?label=downloads)](https://galaxy.ansible.com/trallnag/awscli)
 
 # Ansible Role `trallnag.awscli`
 
