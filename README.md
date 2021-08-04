@@ -4,7 +4,7 @@
 
 # Ansible Role `trallnag.awscli`
 
-Ansible role that installs [AWS CLI][awscli] with the official installer on Ubuntu and Debian.
+Ansible role that installs [AWS CLI][awscli] using the official installer on Ubuntu and Debian.
 
 [awscli]: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
 
