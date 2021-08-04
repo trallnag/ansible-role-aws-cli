@@ -2,7 +2,7 @@ galaxy_info:
   author: Tim Schwenke
   namespace: trallnag
   role_name: awscli
-  description: Installs AWS CLI with the official installer on Ubuntu and Debian
+  description: Installs AWS CLI using the official installer on Ubuntu and Debian
   license: Apache-2.0
   company: none
   min_ansible_version: 2.5
