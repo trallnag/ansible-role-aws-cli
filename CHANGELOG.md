@@ -9,12 +9,14 @@ specification.
 
 ## Unreleased
 
-* Nothing.
+### Added
+
+* Support Debian and RedHat OS families and allow user to override OS packages.
+
+### Changed
+
+* Various changes and improvements regarding documentation.
 
 ## [1.0.0] 2021-07-26
 
 * Initial release.
-
-## Unreleased
-
-* Nothing.

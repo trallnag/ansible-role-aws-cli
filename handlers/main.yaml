@@ -1,14 +1,3 @@
-- name: Install APT dependencies
-  apt:
-    name:
-      - libc6
-      - groff
-      - less
-      - unzip
-      - curl
-    state: present
-  become: true
-
 - name: Download archive to tmp
   get_url:
     url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ awscli_version }}.zip

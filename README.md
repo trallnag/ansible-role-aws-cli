@@ -4,7 +4,7 @@
 
 # Ansible Role `trallnag.awscli`
 
-Ansible role that installs [AWS CLI][awscli] using the official installer on Ubuntu and Debian.
+Ansible role that installs [AWS CLI][awscli] using the official installer on Linux.
 
 [awscli]: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
 
@@ -12,7 +12,7 @@ Available on [Ansible Galaxy](https://galaxy.ansible.com/trallnag/awscli).
 
 ## Content
 
-* Installs all dependencies with APT.
+* Installs all dependencies for Debian, RedHat, or manually defined packages.
 * Configures tab completion for Bash.
 
 ## Role Variables
@@ -25,6 +25,18 @@ awscli_version:
   description: >-
     Version to install. Check here:
     <https://github.com/aws/aws-cli/blob/v2/CHANGELOG.rst>.
+
+awscli_os_pkgs:
+  default: []
+  type: list
+  elements: str
+  required: false
+  description: >-
+    OS packages that should be installed using the default package manager
+    selected by the generic package module. Only use this if the targeted
+    OS family is not RedHat nor Debian or the defaults just don't work for
+    you. Check here for requirements:
+    <https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html#cliv2-linux-install>.
 ```
 
 ## Example Playbook
@@ -43,7 +55,7 @@ awscli_version:
 
 ## Special Requirements
 
-* Only Ubuntu and Debian supported due to APT dependencies.
+None.
 
 ## Special Dependencies
 

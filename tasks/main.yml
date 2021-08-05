@@ -1,3 +1,20 @@
+- name: Include vars depending on OS family and override
+  when: (awscli_os_pkgs is not iterable) or (awscli_os_pkgs | length < 1)
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "os-{{ ansible_os_family | lower }}.yaml"
+        - "os-default.yaml"
+      paths:
+        - vars
+
+- name: Install OS packages
+  package:
+    name: "{{ awscli_os_pkgs }}"
+    state: present
+  become: true
+
 - name: Check if AWS CLI in the correct version is installed
   shell: |
     if ! aws --version | grep -c "aws-cli/{{ awscli_version }}"; then
@@ -6,7 +23,6 @@
   register: task
   changed_when: "'status=changed' in task.stdout"
   notify:
-    - "{{ role_name }} : Install APT dependencies"
     - "{{ role_name }} : Download archive to tmp"
     - "{{ role_name }} : Create temporary dir for unpacked archive"
     - "{{ role_name }} : Unarchive archive to temporary dir"
