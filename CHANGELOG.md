@@ -9,6 +9,10 @@ specification.
 
 ## Unreleased
 
+* Nothing.
+
+## [1.1.0] 2021-08-05
+
 ### Added
 
 * Support Debian and RedHat OS families and allow user to override OS packages.
