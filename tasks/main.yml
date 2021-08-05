@@ -1,3 +1,10 @@
+- name: Fail when OS family not supported and no override configured
+  when: >-
+    (awscli_os_pkgs | length < 1)
+    and (ansible_os_family | lower not in awscli_os_families)
+  fail:
+    msg: The target OS family is not Debian nor RedHat. Use var 'awscli_os_pkgs'.
+
 - name: Include vars depending on OS family and override
   when: (awscli_os_pkgs is not iterable) or (awscli_os_pkgs | length < 1)
   include_vars: "{{ lookup('first_found', params) }}"
@@ -5,7 +12,6 @@
     params:
       files:
         - "os-{{ ansible_os_family | lower }}.yaml"
-        - "os-default.yaml"
       paths:
         - vars
 

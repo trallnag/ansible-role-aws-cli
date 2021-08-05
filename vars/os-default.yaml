@@ -1,6 +1,0 @@
-awscli_os_pkgs:
-  - unzip
-  - curl
-  - groff
-  - less
-  - libc6

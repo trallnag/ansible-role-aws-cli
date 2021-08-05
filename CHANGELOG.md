@@ -11,6 +11,13 @@ specification.
 
 * Nothing.
 
+## [1.2.0] 2021-08-05
+
+### Added
+
+* Task that fails role if OS family is not Debian nor RedHat and no override
+  has been set for packages required.
+
 ## [1.1.0] 2021-08-05
 
 ### Added

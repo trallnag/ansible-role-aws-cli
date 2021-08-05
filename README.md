@@ -32,10 +32,10 @@ awscli_os_pkgs:
   elements: str
   required: false
   description: >-
-    OS packages that should be installed using the default package manager
-    selected by the generic package module. Only use this if the targeted
-    OS family is not RedHat nor Debian or the defaults just don't work for
-    you. Check here for requirements:
+    This role only installs the correct OS dependencies for the OS families
+    Debian (for example Ubuntu) and RedHat (for example Fedora). If you
+    are targeting another OS family you must list all required packages
+    or a task in this role will fail. Check here for requirements:
     <https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html#cliv2-linux-install>.
 ```
 
