@@ -1,3 +1,6 @@
+# ------------------------------------------------------------------------------
+
+
 - name: Fail when OS family not supported and no override configured
   when: >-
     (awscli_os_pkgs | length < 1)
@@ -21,24 +24,67 @@
     state: present
   become: true
 
-- name: Check if AWS CLI in the correct version is installed
-  shell: |
-    if ! aws --version | grep -c "aws-cli/{{ awscli_version }}"; then
-      echo status=changed
-    fi
-  register: task
-  changed_when: "'status=changed' in task.stdout"
-  notify:
-    - "{{ role_name }} : Download archive to tmp"
-    - "{{ role_name }} : Create temporary dir for unpacked archive"
-    - "{{ role_name }} : Unarchive archive to temporary dir"
-    - "{{ role_name }} : Execute install script"
-    - "{{ role_name }} : Check if install succeeded"
 
-- name: Add init block to `~/.profile`
-  blockinfile:
-    path: ~/.profile
-    marker: "# {mark} :: ANSIBLE MANAGED BLOCK :: {{ role_name }}"
-    block: |
-      complete -C '/usr/local/bin/aws_completer' aws
-      export PATH=/usr/local/aws/bin:$PATH
+# ------------------------------------------------------------------------------
+
+
+- name: Check AWS CLI status
+  shell: |
+    export PATH=/usr/local/aws/bin:$PATH
+    if ! aws --version | grep -c "aws-cli/{{ awscli_version }}"; then
+      echo 'install required'
+    fi
+  register: awscli_status
+  changed_when: "'install required' in awscli_status.stdout"
+
+
+# ------------------------------------------------------------------------------
+
+
+- name: Download archive to tmp
+  when: "'install required' in awscli_status.stdout"
+  get_url:
+    url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ awscli_version }}.zip
+    dest: /tmp/awscli-{{ awscli_version }}.zip
+  become: true
+
+- name: Create temporary dir for unpacked archive
+  when: "'install required' in awscli_status.stdout"
+  file:
+    path: /tmp/awscli-{{ awscli_version }}
+    state: directory
+  become: true
+
+- name: Unarchive archive to temporary dir
+  when: "'install required' in awscli_status.stdout"
+  unarchive:
+    src: /tmp/awscli-{{ awscli_version }}.zip
+    dest: /tmp/awscli-{{ awscli_version }}/
+    remote_src: true
+  become: true
+
+- name: Execute install script
+  when: "'install required' in awscli_status.stdout"
+  shell: |
+    export PATH=/usr/local/aws/bin:$PATH
+    if command -v aws &> /dev/null; then
+      /tmp/awscli-{{ awscli_version }}/aws/install --update
+    else
+      /tmp/awscli-{{ awscli_version }}/aws/install
+    fi
+  become: true
+
+
+# ------------------------------------------------------------------------------
+
+
+- name: Ensure that AWS CLI is installed
+  shell: |
+    export PATH=/usr/local/aws/bin:$PATH
+    if ! aws --version | grep -c "aws-cli/{{ awscli_version }}"; then
+      exit 1
+    fi
+  changed_when: false
+
+
+# ------------------------------------------------------------------------------

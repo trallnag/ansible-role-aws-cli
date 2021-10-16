@@ -1,3 +1,4 @@
+[![primary](https://github.com/trallnag/ansible-role-awscli/actions/workflows/primary.yaml/badge.svg)](https://github.com/trallnag/ansible-role-awscli/actions/workflows/primary.yaml)
 [![role](https://img.shields.io/ansible/role/55771)](https://galaxy.ansible.com/trallnag/awscli)
 [![quality](https://img.shields.io/ansible/quality/55771)](https://galaxy.ansible.com/trallnag/awscli)
 [![downloads](https://img.shields.io/ansible/role/d/55771?label=downloads)](https://galaxy.ansible.com/trallnag/awscli)
@@ -10,36 +11,33 @@ Ansible role that installs [AWS CLI][awscli] using the official installer on Lin
 
 Available on [Ansible Galaxy](https://galaxy.ansible.com/trallnag/awscli).
 
-## Content
+## Scope
 
-* Installs all dependencies for Debian, RedHat, or manually defined packages.
-* Configures tab completion for Bash.
+In:
+
+* Installing AWS CLI.
+* Installing OS dependencies.
+
+Out:
+
+* Setting up completion for shells.
+* Adding AWS CLI executables to PATH.
+
+## Special Requirements
+
+None.
+
+## Special Dependencies
+
+None.
 
 ## Role Variables
 
-```yaml
-awscli_version:
-  default: 2.2.22
-  type: raw
-  required: false
-  description: >-
-    Version to install. Check here:
-    <https://github.com/aws/aws-cli/blob/v2/CHANGELOG.rst>.
+Check out [`meta/argument_specs.yaml`](meta/argument_specs.yaml).
 
-awscli_os_pkgs:
-  default: []
-  type: list
-  elements: str
-  required: false
-  description: >-
-    This role only installs the correct OS dependencies for the OS families
-    Debian (for example Ubuntu) and RedHat (for example Fedora). If you
-    are targeting another OS family you must list all required packages
-    or a task in this role will fail. Check here for requirements:
-    <https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html#cliv2-linux-install>.
-```
+## Examples
 
-## Example Playbook
+Here is a minimal Playbook:
 
 ```yaml
 - name: Playbook
@@ -53,18 +51,11 @@ awscli_os_pkgs:
         awscli_version: 2.2.22
 ```
 
-## Special Requirements
-
-None.
-
-## Special Dependencies
-
-None.
-
 ## License
 
-Apache-2.0
+Distributed under the MIT License. See [`LICENSE`](LICENSE) for more information.
 
-## Author Information
+## Contact
 
-Trallnag
+    Tim Schwenke <tim.schwenke@trallnag.com>
+    ACCB8F306184BEEE49E7370E5DBF2C327E72AA3F
