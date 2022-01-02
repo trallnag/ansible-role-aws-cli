@@ -5,7 +5,7 @@ name: primary
 on:
   workflow_dispatch:
   push:
-    branches: [master]
+    branches: [trunk]
 
 jobs:
   primary:
@@ -13,11 +13,11 @@ jobs:
 
     steps:
 
-      # ========================================================================
+      # ------------------------------------------------------------------------
 
       - uses: actions/checkout@v2
 
-      # ========================================================================
+      # ------------------------------------------------------------------------
       # Pre-Commit
 
       - uses: actions/setup-python@v2
@@ -37,12 +37,12 @@ jobs:
 
       - run: pre-commit run --all-files --verbose --show-diff-on-failure
 
-      # ========================================================================
+      # ------------------------------------------------------------------------
       # Semantic Release
 
       - name: Copy package meta info to root
         run: |
-          cp .local/node/package* .
+          cp node/package* .
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -57,17 +57,16 @@ jobs:
         run: npm install --no-progress --prefer-offline 2>&1 | tee
 
       - name: Semantic Release
-        if: "!contains(github.event.head_commit.message, '[skip semantic release]')"
         id: semantic_release
         run: npx --no-install semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # ========================================================================
+      # ------------------------------------------------------------------------
 
       - name: Import to Ansible Galaxy
         uses: robertdebock/galaxy-action@1.1.1
         with:
           galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
 
-      # ========================================================================
+      # ------------------------------------------------------------------------

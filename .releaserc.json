@@ -1,24 +1,21 @@
 {
+  "branches": [
+    "+([0-9])?(.{+([0-9]),x}).x",
+    "main",
+    "master",
+    "trunk",
+    { "name": "beta", "prerelease": true },
+    { "name": "alpha", "prerelease": true }
+  ],
   "preset": "conventionalcommits",
-  "presetConfig": {
-    "types": [
-      {"type": "feat", "section": "✨ Features"},
-      {"type": "fix", "section": "🐛 Bug Fixes"},
-      {"type": "perf", "section": "⚡️ Performance Improvements"},
-      {"type": "refactor","section": "♻️ Refactoring"},
-      {"type": "docs", "section": "📝 Documentation"},
-      {"type": "style", "section": "🎨 Style"},
-      {"type": "test","section": "✅ Tests"}
-    ]
-  },
   "tagFormat": "${version}",
   "plugins": [
     [
       "@semantic-release/commit-analyzer",
       {
         "releaseRules": [
-          {"type": "perf", "release": "patch"},
-          {"type": "refactor", "release": "patch"}
+          { "type": "perf", "release": "patch" },
+          { "type": "refactor", "release": "patch" }
         ]
       }
     ],
@@ -26,14 +23,15 @@
     [
       "@semantic-release/changelog",
       {
-        "changelogTitle": "# Changelog"
+        "changelogFile": "CHANGELOG.md"
       }
     ],
-    "@semantic-release/github",
     [
-      "@semantic-release/git", {
+      "@semantic-release/git",
+      {
         "assets": ["CHANGELOG.md"]
       }
-    ]
+    ],
+    "@semantic-release/github"
   ]
 }
