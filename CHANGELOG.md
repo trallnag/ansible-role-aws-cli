@@ -1,3 +1,5 @@
+## [1.0.1](https://github.com/trallnag/ansible-role-awscli/compare/1.0.0...1.0.1) (2022-06-24)
+
 # [1.0.0](https://github.com/trallnag/ansible-role-awscli/compare/18088a0fe80a2bff8e324cd0b34a192cb725bb35...1.0.0) (2021-10-16)
 
 ### Bug Fixes
