@@ -48,5 +48,5 @@ Here is a minimal Playbook:
   roles:
     - name: trallnag.awscli
       vars:
-        awscli_version: "2.2.22"
+        awscli_version: "2.7.7"
 ```
