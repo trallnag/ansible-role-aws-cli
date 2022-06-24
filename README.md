@@ -5,7 +5,7 @@
 
 # Ansible Role `trallnag.awscli`
 
-Ansible role that installs [AWS CLI][awscli] using the official installer on Linux.
+Role that installs [AWS CLI v2][awscli] using the official installer on Linux.
 
 [awscli]: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
 
@@ -15,13 +15,13 @@ Available on [Ansible Galaxy](https://galaxy.ansible.com/trallnag/awscli).
 
 In:
 
-* Installing AWS CLI.
-* Installing OS dependencies.
+- Installing AWS CLI.
+- Installing OS dependencies.
 
 Out:
 
-* Setting up completion for shells.
-* Adding AWS CLI executables to PATH.
+- Setting up completion for shells.
+- Adding AWS CLI executables to PATH.
 
 ## Special Requirements
 
@@ -48,5 +48,5 @@ Here is a minimal Playbook:
   roles:
     - name: trallnag.awscli
       vars:
-        awscli_version: 2.2.22
+        awscli_version: "2.2.22"
 ```
