@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/trallnag/ansible-role-awscli/compare/1.0.1...1.0.2) (2022-06-30)
+
+
+### Refactor
+
+* Switch to single quotes in YAMLs ([371f694](https://github.com/trallnag/ansible-role-awscli/commit/371f6946d174106711184451f61ce647c36ff36a))
+
 ## [1.0.1](https://github.com/trallnag/ansible-role-awscli/compare/1.0.0...1.0.1) (2022-06-24)
 
 
