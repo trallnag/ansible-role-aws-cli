@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       # ------------------------------------------------------------------------
 
       - uses: actions/checkout@v3
@@ -30,7 +29,7 @@ jobs:
           pre-commit install
 
       - name: Cache pre-commit
-        uses: actions/cache@v3.0.1
+        uses: actions/cache@v3
         with:
           path: ~/.cache/pre-commit
           key: ${{ runner.os }}-pre-commit
@@ -45,24 +44,24 @@ jobs:
           cp node/package* .
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3.1.1
+        uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: '18'
           cache: npm
 
       - name: Install packages
-        run: npm install --no-progress --prefer-offline
+        run: npm install --no-progress --prefer-offline --no-audit
 
       - name: Semantic Release
-        id: semantic_release
         run: npx --no-install semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # ------------------------------------------------------------------------
+      # Ansible Galaxy
 
       - name: Import to Ansible Galaxy
-        uses: robertdebock/galaxy-action@1.2.0
+        uses: robertdebock/galaxy-action@1.2.1
         with:
           galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
           git_branch: trunk

@@ -7,7 +7,8 @@
 
 Role that installs [AWS CLI v2][awscli] using the official installer on Linux.
 
-[awscli]: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
+[awscli]:
+  https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
 
 Available on [Ansible Galaxy](https://galaxy.ansible.com/trallnag/awscli).
 
@@ -48,5 +49,5 @@ Here is a minimal Playbook:
   roles:
     - name: trallnag.awscli
       vars:
-        awscli_version: "2.7.7"
+        awscli_version: '2.7.7'
 ```

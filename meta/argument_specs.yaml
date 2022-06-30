@@ -3,7 +3,7 @@ argument_specs:
     short_description: Main entry point
     options:
       awscli_version:
-        default: 2.2.22
+        default: '2.2.22'
         type: raw
         required: false
         description: >-
@@ -16,8 +16,9 @@ argument_specs:
         elements: str
         required: false
         description: >-
-          This role only installs the correct OS dependencies for the OS families
-          Debian (for example Ubuntu) and RedHat (for example Fedora). If you
-          are targeting another OS family you must list all required packages
-          or a task in this role will fail. Check here for requirements:
+          This role only installs the correct OS dependencies for the OS
+          families Debian (for example Ubuntu) and RedHat (for example Fedora).
+          If you are targeting another OS family you must list all required
+          packages or a task in this role will fail. Check here for
+          requirements:
           <https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html#cliv2-linux-install>.

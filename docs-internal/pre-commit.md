@@ -22,6 +22,6 @@ Pre-commit is configured via
 # Run pre-commit against all files.
 pre-commit run -a
 
-# Run only the flake8 hook against all files.
-pre-commit run flake8 -a
+# Run only one hook against all files.
+pre-commit run <hook> -a
 ```
