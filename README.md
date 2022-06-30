@@ -26,7 +26,7 @@ Out:
 
 ## Special Requirements
 
-None.
+Some tasks require root privileges via `become: true`.
 
 ## Special Dependencies
 
