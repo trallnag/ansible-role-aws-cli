@@ -2,7 +2,7 @@
 
 name: primary
 
-on:
+'on':
   workflow_dispatch:
   push:
     branches: [trunk]
