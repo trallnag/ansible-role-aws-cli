@@ -40,8 +40,7 @@ jobs:
       # Semantic Release
 
       - name: Copy package meta info to root
-        run: |
-          cp node/package* .
+        run: cp node/package* .
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
