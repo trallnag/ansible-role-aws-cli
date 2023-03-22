@@ -3,9 +3,9 @@ galaxy_info:
   namespace: trallnag
   role_name: awscli
   description: Installs the AWS CLI using the official installer
-  license: ISC
+  license: Apache-2.0
   company: none
-  min_ansible_version: 2.5
+  min_ansible_version: "2.5"
 
   platforms:
     - name: GenericBSD
@@ -20,6 +20,4 @@ galaxy_info:
 
   galaxy_tags:
     - aws
-    - python
-    - cli
-    - development
+    - system

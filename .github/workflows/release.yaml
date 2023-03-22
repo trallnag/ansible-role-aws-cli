@@ -1,0 +1,47 @@
+name: Release
+
+#
+# Releases new version of this project.
+#
+# Make sure to prepare project for a new release (see docs for more). After
+# publishing role to Ansible Galaxy a GitHub release is drafted.
+#
+# Role page on Ansible Galaxy: https://galaxy.ansible.com/trallnag/awscli
+#
+# Requires GALAXY_API_KEY secret to be present.
+#
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Import to Ansible Galaxy
+        uses: robertdebock/galaxy-action@1.2.1
+        with:
+          galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
+          git_branch: master
+
+      - name: Determine GitHub release name
+        run: |
+          version=$(echo "${GITHUB_REF#refs/*/}" | cut -c 2-)
+          current_date=$(date +%Y-%m-%d)
+          release_name="$version / $current_date"
+          echo "release_name=$release_name" >> $GITHUB_OUTPUT
+
+      - name: Draft GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ steps.vars.outputs.release_name }}
+          draft: true

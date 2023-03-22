@@ -2,52 +2,28 @@
 [![role](https://img.shields.io/ansible/role/55771)](https://galaxy.ansible.com/trallnag/awscli)
 [![quality](https://img.shields.io/ansible/quality/55771)](https://galaxy.ansible.com/trallnag/awscli)
 [![downloads](https://img.shields.io/ansible/role/d/55771?label=downloads)](https://galaxy.ansible.com/trallnag/awscli)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/trallnag/ansible-role-awscli/master.svg)](https://results.pre-commit.ci/latest/github/trallnag/ansible-role-awscli/master)
 
 # Ansible Role `trallnag.awscli`
 
-Role that installs [AWS CLI v2][awscli] using the official installer on Linux.
-
-[awscli]:
-  https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
+Role that installs AWS CLI v2 and the AWS CLI SSM plugin using the official
+installers on Linux.
 
 Available on [Ansible Galaxy](https://galaxy.ansible.com/trallnag/awscli).
 
-## Scope
+## Licensing
 
-In:
+This work is licensed under the
+[Apache License](https://choosealicense.com/licenses/apache-2.0/) (Apache-2.0),
+a permissive license whose main conditions require preservation of copyright and
+license notices. See [`LICENSE`](LICENSE) for the license text.
 
-- Installing AWS CLI.
-- Installing OS dependencies.
+This work comes with an explicit [`NOTICE`](NOTICE) file containing additional
+legal notices and information.
 
-Out:
+## Links
 
-- Setting up completion for shells.
-- Adding AWS CLI executables to PATH.
-
-## Special Requirements
-
-Some tasks require root privileges via `become: true`.
-
-## Special Dependencies
-
-None.
-
-## Role Variables
-
-Check out [`meta/argument_specs.yaml`](meta/argument_specs.yaml).
-
-## Examples
-
-Here is a minimal Playbook:
-
-```yaml
-- name: Playbook
-  hosts: myhost
-  remote_user: myuser
-  vars:
-    rolespec_validate: true
-  roles:
-    - name: trallnag.awscli
-      vars:
-        awscli_version: '2.7.7'
-```
+- Ansible Galaxy:
+  [galaxy.ansible.com/trallnag/awscli](https://galaxy.ansible.com/trallnag/awscli)
+- Pre-commit CI:
+  [results.pre-commit.ci/repo/github/389439387](https://results.pre-commit.ci/repo/github/389439387)

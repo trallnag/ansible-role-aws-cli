@@ -1,3 +1,13 @@
-awscli_os_families:
-  - debian
-  - redhat
+awscli_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ awscli_version }}.zip
+awscli_signature_url: "{{ awscli_url }}.sig"
+awscli_download_path: /tmp
+
+awscli_ssm_url: "https://s3.amazonaws.com/session-manager-downloads/plugin/{{ awscli_ssm_version }}/ubuntu_64bit/session-manager-plugin.deb"
+
+os_packages_debian:
+  - curl
+  - gpg-agent
+  - groff
+  - less
+  - libc6
+  - unzip

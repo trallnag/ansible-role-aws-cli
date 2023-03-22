@@ -1,2 +1,13 @@
-node_modules/
+# ------------------------------------------------------------------------------
+# Entries specific to this repository.
+
+
+.vscode/
 tmp/
+
+
+# ------------------------------------------------------------------------------
+# Sourced from: https://github.com/github/gitignore/blob/main/Global/Ansible.gitignore
+
+
+*.retry

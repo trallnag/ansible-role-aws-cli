@@ -1,0 +1,29 @@
+- name: Verify
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Include role defaults vars
+      with_first_found: [../../defaults/main.yml]
+      ansible.builtin.include_vars: "{{ item }}"
+
+    - name: Execute AWS CLI version command
+      ansible.builtin.command: aws --version
+      register: awscli_version_command
+      changed_when: false
+
+    - name: Validate AWS CLI version command
+      ansible.builtin.assert:
+        that:
+          - awscli_version_command.rc == 0
+          - "'aws-cli/{{ awscli_version }}' in awscli_version_command.stdout"
+
+    - name: Execute AWS SSM plugin version command
+      ansible.builtin.command: session-manager-plugin --version
+      register: awscli_ssm_version_command
+      changed_when: false
+
+    - name: Validate AWS SSM plugin version command
+      ansible.builtin.assert:
+        that:
+          - awscli_ssm_version_command.rc == 0
+          - "'{{ awscli_ssm_version }}' in awscli_ssm_version_command.stdout"
