@@ -34,6 +34,7 @@ repos:
     rev: v6.15.0
     hooks:
       - id: ansible-lint
+        types: [yaml]
         additional_dependencies: [".", ansible-core>=2.14.4]
 
 ci:
