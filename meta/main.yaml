@@ -9,14 +9,8 @@ galaxy_info:
 
   platforms:
     - name: GenericBSD
-      versions:
-        - any
     - name: GenericLinux
-      versions:
-        - any
     - name: GenericUNIX
-      versions:
-        - any
 
   galaxy_tags:
     - aws

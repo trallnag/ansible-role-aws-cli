@@ -55,12 +55,14 @@
 - name: Import AWS public key
   when: "'install required' in awscli_status.stdout"
   ansible.builtin.command: "gpg --import {{ gpg_public_key.dest }}"
+  changed_when: true
   become: true
 
 - name: Verify downloaded archive using signature file
   when: "'install required' in awscli_status.stdout"
   ansible.builtin.command: "gpg --verify {{ downloaded_signature.dest }} {{ downloaded_archive.dest }}"
   register: verification_output
+  changed_when: true
   become: true
 
 - name: Assert that GPG verification was successful
@@ -80,6 +82,7 @@
 - name: Install AWS CLI
   when: "'install required' in awscli_status.stdout"
   ansible.builtin.command: "{{ unarchived_file.dest }}/aws/install --update"
+  changed_when: true
   become: true
 
 
