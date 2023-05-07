@@ -40,8 +40,8 @@ Read [`devel/pre-commit.md`](devel/pre-commit.md) for more info.
 
 ### Taskfile
 
-Ensure that [Task](https://taskfile.dev) is installed globally. It is used to
-wrap common commands. Can be compared to phony targets in Make.
+Ensure that [Task](https://taskfile.dev) is installed. It is used to wrap common
+commands abd Can be compared to Make and its phony targets.
 
 Read [`devel/task.md`](devel/task.md) for more info.
 
