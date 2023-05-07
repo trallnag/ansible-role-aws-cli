@@ -33,16 +33,18 @@ jobs:
           galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
           git_branch: master
 
-      - name: Determine GitHub release name
-        id: release_name
+      - name: Determine release version
         run: |
-          version=$(echo "${GITHUB_REF#refs/*/}" | cut -c 2-)
-          current_date=$(date +%Y-%m-%d)
-          release_name="$version / $current_date"
-          echo "release_name=$release_name" >> $GITHUB_OUTPUT
+          release_version=$(echo "${GITHUB_REF#refs/*/}" | cut -c 2-)
+          echo "RELEASE_VERSION=$release_version" >> $GITHUB_ENV
+
+      - name: Determine release name
+        run: |
+          release_name="${{ env.RELEASE_VERSION }} / $(date +%Y-%m-%d)"
+          echo "RELEASE_NAME=$release_name" >> $GITHUB_ENV
 
       - name: Draft GitHub release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ steps.release_name.outputs.release_name }}
+          name: ${{ env.RELEASE_NAME }}
           draft: true
