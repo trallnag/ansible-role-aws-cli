@@ -8,9 +8,7 @@ galaxy_info:
   min_ansible_version: "2.5"
 
   platforms:
-    - name: GenericBSD
-    - name: GenericLinux
-    - name: GenericUNIX
+    - name: Ubuntu
 
   galaxy_tags:
     - aws

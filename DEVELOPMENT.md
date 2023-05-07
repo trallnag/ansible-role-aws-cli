@@ -37,3 +37,13 @@ pre-commit run -a
 ```
 
 Read [`devel/pre-commit.md`](devel/pre-commit.md) for more info.
+
+## FAQ
+
+### Why is the extension `.yml` used instead of `.yaml`?
+
+Molecule ignores YAML files that use the `.yaml` extension. See the following
+links for more information:
+
+- <https://github.com/ansible-community/molecule/issues/3849>
+- <https://github.com/ansible-community/molecule/discussions/3910>
