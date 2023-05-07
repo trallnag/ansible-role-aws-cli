@@ -32,5 +32,5 @@ task --list
 ### Run task
 
 ```shell
-task $TASK
+task $task
 ```

@@ -21,7 +21,7 @@ It is configured via [`.pre-commit-config.yaml`](../.pre-commit-config.yaml).
 ## GitHub Integration
 
 While pre-commit is used in GitHub Actions, there is no explicit job or workflow
-where pre-commit is executed. This happens through the continous integration
+where pre-commit is executed. This happens through the continuous integration
 service [pre-commit.ci](https://pre-commit.ci/) and the related GitHub App
 [pre-commit ci](https://github.com/marketplace/pre-commit-ci).
 
@@ -47,5 +47,5 @@ pre-commit run -a
 ### Run specific hook against all files
 
 ```shell
-pre-commit run -a $HOOK
+pre-commit run -a $hook
 ```
