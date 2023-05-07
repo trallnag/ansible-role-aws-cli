@@ -1,0 +1,18 @@
+argument_specs:
+  main:
+    short_description: Main entry point
+    options:
+      awscli_version:
+        default: "2.11.18"
+        type: raw
+        required: false
+        description: >-
+          Version of the AWS CLI to install. Check here:
+          <https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst>.
+      awscli_ssm_version:
+        default: "1.2.463.0"
+        type: raw
+        required: false
+        description: >-
+          Version of the AWS CLI SSM plugin to install. Check here:
+          <https://github.com/aws/session-manager-plugin/releases>.

@@ -38,6 +38,30 @@ pre-commit run -a
 
 Read [`devel/pre-commit.md`](devel/pre-commit.md) for more info.
 
+### Taskfile
+
+Ensure that [Task](https://taskfile.dev) is installed globally. It is used to
+wrap common commands. Can be compared to phony targets in Make.
+
+Read [`devel/task.md`](devel/task.md) for more info.
+
+### Python Packages
+
+Ensure that the packages listed in [`requirements.txt`](./requirements.txt) are
+installed and the version constraints are fulfilled.
+
+### Running Tests
+
+Ansible Molecule is used for testing this role. Use either of the following:
+
+```shell
+task test
+molecule test
+```
+
+Note that the existing Molecule scenario is hardcoded to use Docker as its
+provider. So Docker must be available as well on the system.
+
 ## FAQ
 
 ### Why is the extension `.yml` used instead of `.yaml`?
