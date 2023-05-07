@@ -7,6 +7,10 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0).
 
 ## Unreleased
 
+Nothing.
+
+## [0.2.0](https://github.com/trallnag/ansible-role-awscli/compare/v0.1.0...v0.2.0) / 2023-05-07
+
 ### Changed
 
 - Bumped default version of AWS CLI from `2.11.15` to `2.11.18`.

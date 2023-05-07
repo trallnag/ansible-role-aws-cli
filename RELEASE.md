@@ -26,7 +26,7 @@ Continue with the next section.
 Commit the changes. Make sure to sign the commit:
 
 ```shell
-git add CHANGELOG.md src/*/__init__.py pyproject.toml
+git add CHANGELOG.md
 git commit -S -m "chore: Prepare release v$VERSION"
 git log --show-signature -1
 ```
