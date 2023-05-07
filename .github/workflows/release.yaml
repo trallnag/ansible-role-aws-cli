@@ -34,6 +34,7 @@ jobs:
           git_branch: master
 
       - name: Determine GitHub release name
+        id: release_name
         run: |
           version=$(echo "${GITHUB_REF#refs/*/}" | cut -c 2-)
           current_date=$(date +%Y-%m-%d)
@@ -43,5 +44,5 @@ jobs:
       - name: Draft GitHub release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ steps.vars.outputs.release_name }}
+          name: ${{ steps.release_name.outputs.release_name }}
           draft: true
