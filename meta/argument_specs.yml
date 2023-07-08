@@ -3,7 +3,7 @@ argument_specs:
     short_description: Main entry point
     options:
       awscli_version:
-        default: "2.11.18"
+        default: "2.13.0"
         type: raw
         required: false
         description: >-
