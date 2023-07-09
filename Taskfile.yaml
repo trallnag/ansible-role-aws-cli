@@ -6,6 +6,15 @@ tasks:
     - task: lint
     - task: test
 
+  init:
+    cmds:
+      - pre-commit install --install-hooks
+      - pre-commit install --install-hooks --hook-type commit-msg
+
+  update:
+    cmds:
+      - pre-commit autoupdate
+
   fmt:
     desc: Run formatters.
     cmds:
