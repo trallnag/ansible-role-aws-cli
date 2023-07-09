@@ -61,8 +61,7 @@ Here is a minimal Playbook:
 
 ## Project Status
 
-The project is maintained by me, [trallnag](https://github.com/trallnag), and I
-am interested in keeping it alive as my colleagues and I are actively using it.
+Maintained and actively used.
 
 ## Contributing
 
