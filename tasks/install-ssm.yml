@@ -1,7 +1,6 @@
 # ------------------------------------------------------------------------------
 # Is already installed and correct version?
 
-
 - name: Check AWS SSM plugin status
   ansible.builtin.shell: |
     set -o pipefail
@@ -13,10 +12,8 @@
   register: awscli_ssm_status
   changed_when: false
 
-
 # ------------------------------------------------------------------------------
 # Install only if required.
-
 
 - name: Download AWS SSM plugin
   when: "'install required' in awscli_ssm_status.stdout"
@@ -28,16 +25,14 @@
 
 - name: Install AWS SSM (Debian)
   when: >-
-    ("install required" in awscli_ssm_status.stdout)
-    and (ansible_os_family == "Debian")
+    ("install required" in awscli_ssm_status.stdout) and (ansible_os_family ==
+    "Debian")
   ansible.builtin.apt:
     deb: "{{ downloaded_archive.dest }}"
   become: true
 
-
 # ------------------------------------------------------------------------------
 # Validation.
-
 
 - name: Execute AWS SSM plugin version command
   when: "'install required' in awscli_ssm_status.stdout"

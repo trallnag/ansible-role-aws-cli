@@ -1,7 +1,6 @@
 # ------------------------------------------------------------------------------
 # Is already installed and correct version?
 
-
 - name: Check AWS CLI status
   ansible.builtin.shell: |
     set -o pipefail
@@ -14,15 +13,13 @@
   register: awscli_status
   changed_when: false
 
-
 # ------------------------------------------------------------------------------
 # Install only if required.
 
-
 - name: Install Debian family OS packages with APT
   when: >-
-    ('install required' in awscli_status.stdout)
-    and (ansible_os_family == "Debian")
+    ('install required' in awscli_status.stdout) and (ansible_os_family ==
+    "Debian")
   ansible.builtin.apt:
     name: "{{ os_packages_debian }}"
     state: present
@@ -60,7 +57,8 @@
 
 - name: Verify downloaded archive using signature file
   when: "'install required' in awscli_status.stdout"
-  ansible.builtin.command: "gpg --verify {{ downloaded_signature.dest }} {{ downloaded_archive.dest }}"
+  ansible.builtin.command:
+    "gpg --verify {{ downloaded_signature.dest }} {{ downloaded_archive.dest }}"
   register: verification_output
   changed_when: true
   become: true
@@ -84,7 +82,6 @@
   ansible.builtin.command: "{{ unarchived_file.dest }}/aws/install --update"
   changed_when: true
   become: true
-
 
 # ------------------------------------------------------------------------------
 # Validation.
