@@ -44,7 +44,7 @@ jobs:
           echo "RELEASE_NAME=$release_name" >> $GITHUB_ENV
 
       - name: Draft GitHub release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           name: ${{ env.RELEASE_NAME }}
           draft: true
