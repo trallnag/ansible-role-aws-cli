@@ -21,3 +21,9 @@ test scenario="all":
 # Run role against localhost.
 run:
   poetry run ansible-playbook playbook.yaml
+
+# Extract release notes.
+extract-notes:
+  mkdir -p tmp
+  scripts/extract-notes.py --input CHANGELOG.md --output tmp/release.md
+  mdformat --wrap=10000 tmp/release.md

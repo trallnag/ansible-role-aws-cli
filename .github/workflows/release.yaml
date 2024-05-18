@@ -1,12 +1,10 @@
 name: Release
 
 #
-# Releases new version of this project.
+# Releases new version.
 #
 # Make sure to prepare project for a new release (see docs for more). After
 # publishing role to Ansible Galaxy a GitHub release is drafted.
-#
-# Role page on Ansible Galaxy: https://galaxy.ansible.com/trallnag/awscli
 #
 # Requires GALAXY_API_KEY secret to be present.
 #
@@ -27,11 +25,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Import to Ansible Galaxy
-        uses: robertdebock/galaxy-action@1.2.1
+      - run: pipx install poetry
+
+      - uses: actions/setup-python@v5
         with:
-          galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
-          git_branch: master
+          python-version: "3.12"
+          cache: poetry
+
+      - run: poetry install
+
+      - name: Import to Ansible Galaxy
+        run: >-
+          ansible-galaxy import --token "${{ secrets.GALAXY_API_KEY }}"
+          --role-name aws_cli
 
       - name: Determine release version
         run: |
@@ -43,8 +49,18 @@ jobs:
           release_name="${{ env.RELEASE_VERSION }} / $(date +%Y-%m-%d)"
           echo "RELEASE_NAME=$release_name" >> $GITHUB_ENV
 
-      - name: Draft GitHub release
+      - name: Install mdformat
+        run: pip install mdformat
+
+      - name: Extract release notes
+        run: |
+          mkdir -p tmp
+          scripts/extract-notes.py --input CHANGELOG.md --output tmp/release.md
+          mdformat --wrap=10000 tmp/release.md
+
+      - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
           name: ${{ env.RELEASE_NAME }}
+          body_path: tmp/release.md
           draft: true

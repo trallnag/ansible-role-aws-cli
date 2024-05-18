@@ -7,7 +7,16 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0).
 
 ## Unreleased
 
-Nothing.
+Major redesign.
+
+### Changed
+
+- Removed installation of session manager plugin.
+- Added several Molecule scenarios for better testing.
+- Added special values `latest` and `present` in addition to exact versions.
+- Other improvements.
+- Renamed from `awscli` to `aws_cli`.
+- Changed default installation location to `/opt/aws-cli`.
 
 ## [0.3.0](https://github.com/trallnag/ansible-role-awscli/compare/v0.2.0...v0.3.0) / 2023-07-09
 

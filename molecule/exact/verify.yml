@@ -24,4 +24,5 @@
         that:
           - installed_version == "2.15.51"
         fail_msg: >-
-          `installed_version` is "{{ installed_version }}", but must be "2.15.51".
+          `installed_version` is "{{ installed_version }}", but must be
+          "2.15.51".

@@ -10,7 +10,8 @@ argument_specs:
           - Version of the AWS CLI to install. For example `2.13.0`.
           - Use special value `present` to install latest version once.
           - Use special value `latest` to always install latest version.
-          - "Check here for available versions: <https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst>"
+          - "Check here for available versions:
+            <https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst>"
 
       aws_cli_bin_dir:
         required: false
@@ -22,6 +23,6 @@ argument_specs:
       aws_cli_install_dir:
         required: false
         type: str
-        default: /opt/awscli
+        default: /opt/aws-cli
         description:
           - Install directory. Used for `--install-dir` parameter.

@@ -9,6 +9,15 @@ repos:
       - id: fix-byte-order-marker
       - id: trailing-whitespace
 
+  - repo: local
+    hooks:
+      - id: prettier
+        name: Prettier
+        language: node
+        entry: npx
+        args: [prettier, --write, --prose-wrap=always]
+        types_or: [json, yaml, markdown]
+
 ci:
   autofix_commit_msg: "refactor(pre-commit): Apply hook auto fixes"
   autoupdate_commit_msg: "build(pre-commit): Apply hook rev updates"

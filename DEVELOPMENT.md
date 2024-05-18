@@ -8,26 +8,21 @@ tooling configuration and usage.
 
 Your environment should fulfill the following basic requirements:
 
-- [Pre-commit](https://pre-commit.com). For managing and maintaining pre-commit
-  Git hooks. Optional.
-- [Task](https://taskfile.dev). Task runner as simple alternative to Make.
-  Optional.
+- [Poetry](https://python-poetry.org). For Python dependency management.
+- [Pre-commit](https://pre-commit.com). For managing and maintaining hooks.
+- [Just](https://github.com/casey/just). For running tasks.
 - Unix-like. Not required by itself, but assumed as the standard.
 
 In addition to the following sections in this document, note that the
-[`devel`](devel) directory contains more documentation including further
-information about the tooling listed above.
+[`docs/devel`](docs/devel) directory contains more documentation including
+further information about the tooling listed above.
 
 ## Initial Setup
 
-### Pre-commit Hooks
+Environment can be set up with:
 
-Ensure that [pre-commit](https://pre-commit.com) is installed globally. Setup
-the pre-commit hooks:
-
-```shell
-pre-commit install --install-hooks
-pre-commit install --install-hooks --hook-type commit-msg
+```sh
+just init
 ```
 
 Run all hooks to make sure things are alright:
@@ -36,31 +31,16 @@ Run all hooks to make sure things are alright:
 pre-commit run -a
 ```
 
-Read [`devel/pre-commit.md`](devel/pre-commit.md) for more info.
-
-### Taskfile
-
-Ensure that [Task](https://taskfile.dev) is installed. It is used to wrap common
-commands abd Can be compared to Make and its phony targets.
-
-Read [`devel/task.md`](devel/task.md) for more info.
-
-### Python Packages
-
-Ensure that the packages listed in [`requirements.txt`](./requirements.txt) are
-installed and the version constraints are fulfilled.
-
 ### Running Tests
 
-Ansible Molecule is used for testing this role. Use either of the following:
+Ansible Molecule is used for testing this role. Tests can be triggered with:
 
 ```shell
-task test
-molecule test
+just test
 ```
 
-Note that the existing Molecule scenario is hardcoded to use Docker as its
-provider. So Docker must be available as well on the system.
+Note that the existing Molecule scenarios are hardcoded to use Docker as
+provider. So Docker must be available on the system to run tests.
 
 ## FAQ
 

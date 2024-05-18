@@ -19,8 +19,6 @@ Move the content of the "Unreleased" section that will be included in the new
 release to a new section with an appropriate title for the release. Should the
 "Unreleased" section now be empty, add "Nothing." to it.
 
-Continue with the next section.
-
 ## Trigger
 
 Commit the changes. Make sure to sign the commit:
@@ -38,7 +36,7 @@ git push origin master
 ```
 
 Check
-[workflow runs](https://github.com/trallnag/ansible-role-awscli/actions?query=branch%3Amaster)
+[workflow runs](https://github.com/trallnag/ansible-role-aws-cli/actions?query=branch%3Amaster)
 in GitHub Actions and ensure everything is fine.
 
 Tag the latest commit with an annotated and signed tag:
@@ -61,22 +59,16 @@ git push origin v$VERSION
 ```
 
 This triggers the
-[release workflow](https://github.com/trallnag/ansible-role-awscli/actions/workflows/release.yaml)
-which will import the role to Ansible Galaxy. Monitor the workflow run:
-
-```shell
-gh workflow view release --web
-```
+[release workflow](https://github.com/trallnag/ansible-role-aws-cli/actions/workflows/release.yaml)
+which will import the role to Ansible Galaxy and create a release draft.
 
 ## Wrap Up
 
 Ensure that the new version has been imported to Ansible Galaxy
-[here](https://galaxy.ansible.com/trallnag/awscli).
+[here](https://galaxy.ansible.com/trallnag/aws_cli).
 
 Go to the release page of this project on GitHub
-[here](https://github.com/trallnag/ansible-role-awscli/releases) and review the
+[here](https://github.com/trallnag/ansible-role-aws-cli/releases) and review the
 automatically created release draft.
-
-Add release notes by extracting them from the [changelog](CHANGELOG.md).
 
 Publish the release draft.

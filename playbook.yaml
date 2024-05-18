@@ -2,5 +2,6 @@
   hosts: localhost
   gather_facts: true
   tasks:
-    - ansible.builtin.import_role:
+    - name: Import role
+      ansible.builtin.import_role:
         name: "{{ playbook_dir }}"
