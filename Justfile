@@ -9,6 +9,10 @@ update:
   poetry update
   pre-commit autoupdate
 
+# Lint using ansible-lint.
+lint:
+  poetry run ansible-lint
+
 # Run molecule test scenario(s).
 test scenario="all":
   #!/bin/sh
