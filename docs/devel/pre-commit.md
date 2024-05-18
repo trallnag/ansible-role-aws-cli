@@ -18,16 +18,6 @@ Pre-commit should now run on every commit.
 
 It is configured via [`.pre-commit-config.yaml`](../../.pre-commit-config.yaml).
 
-## GitHub Actions
-
-While pre-commit is used in GitHub Actions, there is no explicit job or workflow
-where pre-commit is executed. This happens through the continuous integration
-service [pre-commit.ci](https://pre-commit.ci/) and the related GitHub App
-[pre-commit ci](https://github.com/marketplace/pre-commit-ci).
-
-Configuration for this is done in the repository owner's settings and the
-[pre-commit.ci](https://pre-commit.ci/) web user interface.
-
 ## Housekeeping
 
 ### Update hooks

@@ -19,5 +19,5 @@ repos:
         types_or: [json, yaml, markdown]
 
 ci:
-  autofix_commit_msg: "refactor(pre-commit): Apply hook auto fixes"
-  autoupdate_commit_msg: "build(pre-commit): Apply hook rev updates"
+  autofix_commit_msg: "ci(pre-commit): Apply hook auto fixes"
+  autoupdate_commit_msg: "ci(pre-commit): Apply hook rev updates"
