@@ -7,7 +7,11 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0).
 
 ## Unreleased
 
-Major redesign.
+Nothing.
+
+## [0.4.0](https://github.com/trallnag/ansible-role-awscli/compare/v0.3.0...v0.4.0) / 2024-05-18
+
+Major redesign, basically starting from scratch.
 
 ### Changed
 
