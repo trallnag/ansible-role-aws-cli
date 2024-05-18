@@ -16,7 +16,7 @@ repos:
         language: node
         entry: npx
         args: [prettier, --write, --prose-wrap=always]
-        types_or: [json, yaml, markdown]
+        types_or: [markdown]
 
 ci:
   autofix_commit_msg: "ci(pre-commit): Apply hook auto fixes"

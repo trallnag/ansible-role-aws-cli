@@ -10,6 +10,7 @@ name: Release
 #
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - v*.*.*
@@ -39,8 +40,12 @@ jobs:
 
       - name: Import to Ansible Galaxy
         run: >-
-          ansible-galaxy import --token "${{ secrets.GALAXY_API_KEY }}"
+          ansible-galaxy role import
+          --token "${{ secrets.GALAXY_API_KEY }}"
           --role-name aws_cli
+          ${{ github.event.repository.owner.login }}
+          ${{ github.event.repository.name }}
+
 
       - name: Determine release version
         run: |
