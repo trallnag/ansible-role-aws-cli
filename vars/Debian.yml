@@ -1,0 +1,9 @@
+__aws_cli_packages:
+  - curl
+  - gnupg2
+  - gpg-agent
+  - groff
+  - less
+  - libc6
+  - sed
+  - unzip

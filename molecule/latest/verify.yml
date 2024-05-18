@@ -19,10 +19,6 @@
         installed_version: >-
           {{ get_installed_version.stdout | regex_search(".+\..+\..+") }}
 
-    - name: Print installed version
-      ansible.builtin.debug:
-        var: installed_version
-
     - name: Get latest version
       ansible.builtin.shell:
         cmd: |

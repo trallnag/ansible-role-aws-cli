@@ -1,13 +1,3 @@
-# ------------------------------------------------------------------------------
-# Entries specific to this repository.
-
-
+.venv/
 .vscode/
 tmp/
-
-
-# ------------------------------------------------------------------------------
-# Sourced from: https://github.com/github/gitignore/blob/main/Global/Ansible.gitignore
-
-
-*.retry

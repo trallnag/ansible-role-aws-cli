@@ -10,8 +10,7 @@ on:
   push:
     branches: [master, dev]
   schedule:
-    # At 15:04 on Saturday.
-    - cron: 4 15 * * 6
+    - cron: 4 15 * * 6  # Every Saturday at 15:04.
 
 jobs:
   test:
@@ -21,15 +20,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install poetry
+        run: pipx install poetry
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-          cache: pip
-          cache-dependency-path: requirements.txt
+          python-version: "3.12"
+          cache: poetry
 
-      - name: Install Python packages
-        run: pip install -r requirements.txt
+      - run: poetry install
 
-      - name: Run Molecule tests
-        run: molecule test
+      - run: poetry run poetry run molecule test --all
