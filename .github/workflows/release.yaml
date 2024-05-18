@@ -25,14 +25,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - run: pipx install poetry
+      - name: Install Poetry
+        run: pipx install poetry
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: poetry
 
-      - run: poetry install
+      - name: Set up virtual env
+        run: poetry install
 
       - name: Import to Ansible Galaxy
         run: >-
