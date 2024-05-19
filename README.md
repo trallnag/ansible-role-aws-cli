@@ -19,7 +19,7 @@ Available on
 Some tasks require root privileges. Privilege escalation is performed with
 explicit `become: true` statements.
 
-## Role Variables
+## Role Parameters
 
 See [`meta/argument_specs.yml`](meta/argument_specs.yml).
 
