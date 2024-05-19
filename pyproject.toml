@@ -4,6 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 package-mode = false
+name = "ansible-role-aws-cli"
 
 [tool.poetry.dependencies]
 python = "^3.12"
