@@ -1,7 +1,7 @@
 name: Pre-commit
 
 #
-# Runs pre-commit hooks and auto commits fixes.
+# Run pre-commit hooks and commit fixes.
 #
 # - https://pre-commit.ci/lite.html
 # - https://github.com/pre-commit-ci/lite-action
