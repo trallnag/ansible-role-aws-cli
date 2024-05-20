@@ -18,6 +18,13 @@ repos:
         args: [prettier, --write, --prose-wrap=always]
         types_or: [markdown]
 
+      - id: ansible-lint
+        name: Ansible Lint
+        language: system
+        entry: poetry run ansible-lint
+        files: ^(meta|molecule|tasks|vars)/
+        types: [yaml]
+
 ci:
   autofix_commit_msg: "ci(pre-commit): Apply hook auto fixes"
   autoupdate_commit_msg: "ci(pre-commit): Apply hook rev updates"
