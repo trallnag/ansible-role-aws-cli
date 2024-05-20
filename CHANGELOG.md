@@ -7,6 +7,10 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0).
 
 ## Unreleased
 
+Nothing.
+
+## [0.5.0](https://github.com/trallnag/ansible-role-awscli/compare/v0.4.0...v0.5.0) / 2024-05-20
+
 ### Added
 
 - Instead of import the public key used for integration check to the default
