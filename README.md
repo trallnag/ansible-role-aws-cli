@@ -1,6 +1,6 @@
 # Ansible Role `trallnag.aws_cli` <!-- omit from toc -->
 
-Role that installs [AWS CLI v2](https://github.com/aws/aws-cli/tree/v2) using
+Role that installs the [AWS CLI v2](https://github.com/aws/aws-cli/tree/v2) using
 the official installer.
 
 Available on
