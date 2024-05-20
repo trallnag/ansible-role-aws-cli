@@ -38,20 +38,18 @@
     aws_cli_archive_url: ""
 
 - name: Set archive URL for target exact
-  when:
-    aws_cli_version not in ["present", "latest"] and aws_cli_installed_version
-    != aws_cli_version
+  when: >-
+    aws_cli_version not in ["present", "latest"]
+    and aws_cli_installed_version != aws_cli_version
   ansible.builtin.set_fact:
     aws_cli_archive_url:
-      https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture
-      }}-{{ aws_cli_version }}.zip
+      https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}-{{ aws_cli_version }}.zip
 
 - name: Set archive URL for target present
   when: aws_cli_version == "present" and aws_cli_installed_version == ""
   ansible.builtin.set_fact:
     aws_cli_archive_url:
-      https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture
-      }}.zip
+      https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}.zip
 
 - name: Determine latest
   when: aws_cli_version == "latest"
@@ -82,8 +80,7 @@
       when: aws_cli_installed_version != aws_cli_latest_version
       ansible.builtin.set_fact:
         aws_cli_archive_url:
-          https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture
-          }}.zip
+          https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}.zip
 
 - name: Print archive URL
   ansible.builtin.debug:
@@ -130,15 +127,20 @@
         mode: u=rw,g=r,o=r
       register: aws_cli_public_key
 
-    - name: Import public key
-      ansible.builtin.command: >-
-        gpg --yes --import {{ aws_cli_public_key.dest }}
-      changed_when: true
+    - name: Verify integrity
+      ansible.builtin.shell:
+        cmd: |
+          set -euo pipefail
 
-    - name: Verify archive with signature
-      ansible.builtin.command: >-
-        gpg --verify {{ aws_cli_download_signature.dest }} {{
-        aws_cli_download_archive.dest }}
+          export GNUPGHOME="{{ aws_cli_tmp_dir.path }}/gnupg"
+          mkdir -m 0700 "$GNUPGHOME"
+
+          gpg --yes --import "{{ aws_cli_public_key.dest }}"
+
+          gpg --verify \
+            {{ aws_cli_download_signature.dest }} \
+            {{ aws_cli_download_archive.dest }}
+        executable: /usr/bin/bash
       changed_when: false
 
     - name: Unzip archive
@@ -150,7 +152,8 @@
 
     - name: Install
       ansible.builtin.command: >-
-        {{ unzip_archive.dest }}/aws/install --bin-dir {{ aws_cli_bin_dir }}
+        {{ unzip_archive.dest }}/aws/install
+        --bin-dir {{ aws_cli_bin_dir }}
         --install-dir {{ aws_cli_install_dir }}
       changed_when: true
 
