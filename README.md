@@ -6,6 +6,11 @@ using the official installer.
 Available on
 [Ansible Galaxy](https://galaxy.ansible.com/ui/standalone/roles/trallnag/aws_cli).
 
+Also consider:
+
+- [trallnag/ansible-role-aws-ssm-plugin](https://github.com/trallnag/ansible-role-aws-ssm-plugin)
+- [trallnag/ansible-role-aws-sam-cli](https://github.com/trallnag/ansible-role-aws-sam-cli)
+
 ## Table of Contents <!-- omit from toc -->
 
 - [Requirements](#requirements)
