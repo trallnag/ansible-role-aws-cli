@@ -1,4 +1,4 @@
-name: Pre-Commit Update
+name: Pre-Commit Updates
 
 on:
   workflow_dispatch:
@@ -6,12 +6,12 @@ on:
     - cron: 34 12 4 * * # Runs at 12:34 (UTC), on day 4 of the month.
 
 jobs:
-  pre-commit-update:
+  pre-commit-updates:
     name: Pre-Commit Update
     permissions:
       contents: write
       pull-requests: write
-    runs-on: external-k8s-v2
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
