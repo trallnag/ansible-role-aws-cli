@@ -99,6 +99,9 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Install project
+        run: poetry install
+
       - name: Run task format
         run: task format
 
