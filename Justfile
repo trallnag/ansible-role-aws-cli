@@ -1,13 +1,21 @@
+set dotenv-load
+
 # Init development environment.
 init:
+  poetry self add poetry-plugin-up
   poetry install
   pre-commit install --install-hooks
   pre-commit install --install-hooks --hook-type commit-msg
 
 # Update development environment.
 update:
-  poetry update
+  poetry self update
+  poetry up --latest
   pre-commit autoupdate
+
+# Format code.
+format:
+
 
 # Lint using ansible-lint.
 lint:
@@ -16,7 +24,7 @@ lint:
 # Run molecule test scenario(s).
 test scenario="all":
   #!/bin/sh
-  if [ "{{ scenario }}" = "all" ]; then
+  if [ "{{ scenario }}" = all ]; then
     poetry run molecule test --all
   else
     poetry run molecule test --scenario-name "{{ scenario }}"
