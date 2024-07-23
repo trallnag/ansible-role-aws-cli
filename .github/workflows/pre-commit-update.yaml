@@ -1,0 +1,35 @@
+name: Pre-Commit Update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 34 12 4 * * # Runs at 12:34 (UTC), on day 4 of the month.
+
+jobs:
+  pre-commit-update:
+    name: Pre-Commit Update
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: external-k8s-v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Add entries to PATH
+        run: |
+          echo "$HOME/.local/bin" | tee -a "$GITHUB_PATH"
+
+      - name: Install pre-commit
+        run: pipx install pre-commit
+
+      - name: Update pre-commit hook(s)
+        run: pre-commit autoupdate
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: pre-commit-update
+          title: "chore(deps): Update pre-commit hook revision(s)"
+          commit-message: "chore(deps): Update pre-commit hook revision(s)"
+          delete-branch: true
