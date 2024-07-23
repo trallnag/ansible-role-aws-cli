@@ -56,3 +56,8 @@ tasks:
         {{- else -}}
           poetry run molecule test -s {{ .scenario }}
         {{- end -}}
+
+  run:
+    desc: Run role against localhost.
+    cmds:
+      - poetry run ansible-playbook playbook.yaml

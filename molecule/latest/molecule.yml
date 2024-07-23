@@ -11,6 +11,8 @@ platforms:
 
 provisioner:
   name: ansible
+  env:
+    ANSIBLE_PIPELINING: "True"
 
 verifier:
   name: ansible
