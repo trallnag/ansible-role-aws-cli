@@ -24,9 +24,8 @@ release to a new section with an appropriate title for the release. Should the
 Commit the changes. Make sure to sign the commit:
 
 ```shell
-git add CHANGELOG.md
+git add .
 git commit -S -m "chore: Prepare release v$VERSION"
-git log --show-signature -1
 ```
 
 Push changes:
@@ -43,7 +42,6 @@ Tag the latest commit with an annotated and signed tag:
 
 ```shell
 git tag -s v$VERSION -m ""
-git show v$VERSION
 ```
 
 Make sure that the tree looks good:

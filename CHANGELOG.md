@@ -9,6 +9,8 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0).
 
 Nothing.
 
+## [0.6.0](https://github.com/trallnag/ansible-role-awscli/compare/v0.5.0...v0.6.0) / 2024-07-24
+
 ### Changed
 
 - Updated documentation.
