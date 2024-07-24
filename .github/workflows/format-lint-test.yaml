@@ -3,6 +3,8 @@ name: Format & Lint & Test
 #
 # Formats, lints, and tests the project.
 #
+# Directly commits back to branch if changes are detected.
+#
 
 on:
   workflow_dispatch:
@@ -23,7 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

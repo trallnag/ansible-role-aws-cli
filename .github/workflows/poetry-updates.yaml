@@ -2,6 +2,7 @@ name: Poetry Updates
 
 #
 # Updates Python dependencies to the latest available versions.
+#
 # Opens a pull request if any updates are available.
 #
 

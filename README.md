@@ -14,7 +14,7 @@ Also consider:
 ## Table of Contents <!-- omit from toc -->
 
 - [Requirements](#requirements)
-- [Role Variables](#role-variables)
+- [Role Parameters](#role-parameters)
 - [Project Status](#project-status)
 - [Contributing](#contributing)
 - [Licensing](#licensing)

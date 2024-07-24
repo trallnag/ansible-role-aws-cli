@@ -2,6 +2,7 @@ name: Pre-Commit Updates
 
 #
 # Updates pre-commit hooks to the latest available versions.
+#
 # Opens a pull request if any updates are available.
 #
 

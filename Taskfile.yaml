@@ -61,3 +61,10 @@ tasks:
     desc: Run role against localhost.
     cmds:
       - poetry run ansible-playbook playbook.yaml
+
+  extract-release-notes:
+    desc: Extract release notes.
+    cmds:
+      - mkdir -p tmp
+      - scripts/extract-release-notes.py --input CHANGELOG.md --output tmp/release.md
+      - mdformat --wrap=10000 tmp/release.md
