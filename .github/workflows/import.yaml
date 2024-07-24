@@ -1,7 +1,7 @@
 name: Import
 
 #
-# Import role to Ansible Galaxy
+# Imports role to Ansible Galaxy.
 #
 # Useful for performing the import without creating a new GitHub release.
 #

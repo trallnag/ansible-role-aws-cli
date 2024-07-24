@@ -1,5 +1,10 @@
 name: Pre-Commit Updates
 
+#
+# Updates pre-commit hooks to the latest available versions.
+# Opens a pull request if any updates are available.
+#
+
 on:
   workflow_dispatch:
   schedule:
@@ -7,7 +12,7 @@ on:
 
 jobs:
   pre-commit-updates:
-    name: Pre-Commit Update
+    name: Pre-Commit Updates
     permissions:
       contents: write
       pull-requests: write
@@ -30,6 +35,6 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           branch: pre-commit-update
-          title: "chore(deps): Update pre-commit hook revision(s)"
-          commit-message: "chore(deps): Update pre-commit hook revision(s)"
+          title: "build(deps): Update pre-commit hook(s)"
+          commit-message: "build(deps): Update pre-commit hook(s)"
           delete-branch: true
