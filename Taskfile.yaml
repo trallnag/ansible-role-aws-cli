@@ -1,6 +1,13 @@
 version: "3"
 
 tasks:
+  default:
+    cmds:
+      - task: init
+      - task: format
+      - task: lint
+      - task: test
+
   init:
     desc: Initialize development environment.
     cmds:
