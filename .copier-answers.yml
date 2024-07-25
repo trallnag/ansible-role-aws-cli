@@ -1,5 +1,3 @@
-# This file MUST NOT be changed manually.
-
-_commit: v1
+_commit: v2
 _src_path: git@github.com:trallnag/copier-template-ansible-role.git
-role_name: just_a_test
+role_name: aws_cli
