@@ -16,6 +16,7 @@ Also consider:
 - [Requirements](#requirements)
 - [Role Parameters](#role-parameters)
 - [Project Status](#project-status)
+- [Template](#template)
 - [Contributing](#contributing)
 - [Licensing](#licensing)
 
@@ -58,6 +59,12 @@ aws_cli_install_dir:
 ## Project Status
 
 Maintained and actively used.
+
+## Template
+
+This repository is based on the
+[Copier](https://copier.readthedocs.io/en/stable/) template
+[trallnag/copier-template-ansible-role](https://github.com/trallnag/copier-template-ansible-role).
 
 ## Contributing
 
