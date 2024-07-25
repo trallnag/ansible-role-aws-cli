@@ -38,8 +38,6 @@ aws_cli_version:
     - Version of the AWS CLI to install. For example `2.13.0`.
     - Use special value `present` to install latest version once.
     - Use special value `latest` to always install latest version.
-    - "Check here for available versions:
-      <https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst>"
 
 aws_cli_bin_dir:
   required: false
