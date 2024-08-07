@@ -106,7 +106,7 @@
         url: "{{ aws_cli_archive_url }}"
         dest: "{{ aws_cli_tmp_dir.path }}/awscliv2.zip"
         force: true
-        mode: u=rw,g=r,o=r
+        mode: u=rw,g=rw,o=r
       register: aws_cli_download_archive
 
     - name: Download signature
@@ -114,14 +114,14 @@
         url: "{{ aws_cli_archive_url }}.sig"
         dest: "{{ aws_cli_tmp_dir.path }}/awscliv2.zip.sig"
         force: true
-        mode: u=rw,g=r,o=r
+        mode: u=rw,g=rw,o=r
       register: aws_cli_download_signature
 
     - name: Place public key
       ansible.builtin.copy:
         src: aws-cli-public-key.asc
         dest: "{{ aws_cli_tmp_dir.path }}"
-        mode: u=rw,g=r,o=r
+        mode: u=rw,g=rw,o=r
       register: aws_cli_public_key
 
     - name: Verify integrity

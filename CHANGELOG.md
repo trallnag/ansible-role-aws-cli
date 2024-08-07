@@ -10,6 +10,7 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0).
 ### Changed
 
 - Updated documentation.
+- Switched file permission from `u=rw,g=r,o=r` to `u=rw,g=rw,o=r`.
 
 ## [0.6.0](https://github.com/trallnag/ansible-role-awscli/compare/v0.5.0...v0.6.0) / 2024-07-24
 
