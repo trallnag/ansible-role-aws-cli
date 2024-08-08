@@ -10,7 +10,7 @@
           if command -v aws &> /dev/null; then
             aws --version | sed -E 's/aws-cli\/(.+) Python.*/\1/'
           fi
-        executable: /usr/bin/bash
+        executable: /bin/bash
       register: get_installed_version
       changed_when: false
 
