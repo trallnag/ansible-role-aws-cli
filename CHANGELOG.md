@@ -15,6 +15,7 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0).
 - Updated public key.
 - Changed license from Apache-2.0 to ISC.
 - Added additional underscore to all variables.
+- Changed default install dir to `/usr/local/aws-cli`.
 
 ## [0.6.0](https://github.com/trallnag/ansible-role-aws-cli/compare/v0.5.0...v0.6.0) / 2024-07-24
 

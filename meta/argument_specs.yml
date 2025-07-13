@@ -21,6 +21,6 @@ argument_specs:
       aws_cli__install_dir:
         required: false
         type: str
-        default: /opt/aws-cli
+        default: /usr/local/aws-cli
         description:
           - Install directory. Used for `--install-dir` parameter.
