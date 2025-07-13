@@ -39,18 +39,18 @@
 
 - name: Set archive URL for target exact
   when: >-
-    aws_cli_version not in ["present", "latest"]
-    and aws_cli_installed_version != aws_cli_version
+    aws_cli__version not in ["present", "latest"]
+    and aws_cli_installed_version != aws_cli__version
   ansible.builtin.set_fact:
-    aws_cli_archive_url: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}-{{ aws_cli_version }}.zip
+    aws_cli_archive_url: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}-{{ aws_cli__version }}.zip
 
 - name: Set archive URL for target present
-  when: aws_cli_version == "present" and aws_cli_installed_version == ""
+  when: aws_cli__version == "present" and aws_cli_installed_version == ""
   ansible.builtin.set_fact:
     aws_cli_archive_url: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}.zip
 
 - name: Determine latest
-  when: aws_cli_version == "latest"
+  when: aws_cli__version == "latest"
   block:
     - name: Determine latest version
       ansible.builtin.shell:
@@ -93,8 +93,8 @@
         state: absent
         force: true
       loop:
-        - "{{ aws_cli_bin_dir }}/aws"
-        - "{{ aws_cli_install_dir }}"
+        - "{{ aws_cli__bin_dir }}/aws"
+        - "{{ aws_cli__install_dir }}"
 
     - name: Create tmp dir
       ansible.builtin.tempfile:
@@ -150,8 +150,8 @@
     - name: Install
       ansible.builtin.command: >-
         {{ unzip_archive.dest }}/aws/install
-        --bin-dir {{ aws_cli_bin_dir }}
-        --install-dir {{ aws_cli_install_dir }}
+        --bin-dir {{ aws_cli__bin_dir }}
+        --install-dir {{ aws_cli__install_dir }}
       changed_when: true
 
     - name: Test executable

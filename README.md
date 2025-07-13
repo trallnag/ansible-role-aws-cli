@@ -30,7 +30,7 @@ explicit `become: true` statements.
 See [`meta/argument_specs.yml`](meta/argument_specs.yml).
 
 ```yaml
-aws_cli_version:
+aws_cli__version:
   required: false
   type: str
   default: present
@@ -39,14 +39,14 @@ aws_cli_version:
     - Use special value `present` to install latest version once.
     - Use special value `latest` to always install latest version.
 
-aws_cli_bin_dir:
+aws_cli__bin_dir:
   required: false
   type: str
   default: /usr/local/bin
   description:
     - Bin directory. Used for `--bin-dir` parameter.
 
-aws_cli_install_dir:
+aws_cli__install_dir:
   required: false
   type: str
   default: /opt/aws-cli

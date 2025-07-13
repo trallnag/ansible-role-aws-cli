@@ -14,4 +14,4 @@
       ansible.builtin.include_role:
         name: trallnag.aws_cli
       vars:
-        aws_cli_version: "2.27.49"
+        aws_cli__version: "2.27.49"

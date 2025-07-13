@@ -7,4 +7,4 @@
       ansible.builtin.include_role:
         name: trallnag.aws_cli
       vars:
-        aws_cli_version: latest
+        aws_cli__version: latest
