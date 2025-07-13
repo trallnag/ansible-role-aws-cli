@@ -13,6 +13,7 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0).
 - Switched permissions of temporary artifacts from `u=rw,g=r,o=r` to
   `u=rw,g=,o=`.
 - Updated public key.
+- Changed license from Apache-2.0 to ISC.
 
 ## [0.6.0](https://github.com/trallnag/ansible-role-aws-cli/compare/v0.5.0...v0.6.0) / 2024-07-24
 
