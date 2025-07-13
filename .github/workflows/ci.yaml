@@ -85,7 +85,7 @@ jobs:
         uses: astral-sh/setup-uv@445689ea25e0de0a23313031f5fe577c74ae45a1 # v6.3.0
         with:
           enable-cache: true
-          cache-suffix: fix-check
+          cache-suffix: fix-check-test
           cache-dependency-glob: |
             uv.lock
             ${{ steps.extract-mise-tools.outputs.pipx }}

@@ -18,24 +18,7 @@ defaults:
     shell: bash
 
 jobs:
-  skip:
-    name: Skip
-    runs-on: ubuntu-latest
-    permissions:
-      actions: write
-      contents: read
-    outputs:
-      skip: ${{ steps.skip.outputs.should_skip }}
-    steps:
-      - id: skip
-        uses: fkirc/skip-duplicate-actions@f75f66ce1886f00957d99748a42c724f4330bdcf # v5.3.1
-        with:
-          concurrent_skipping: always
-          skip_after_successful_duplicate: true
-
   import:
-    needs: skip
-    if: needs.skip.outputs.skip != 'true'
     name: Import
     runs-on: ubuntu-latest
     steps:
@@ -52,10 +35,9 @@ jobs:
         uses: astral-sh/setup-uv@445689ea25e0de0a23313031f5fe577c74ae45a1 # v6.3.0
         with:
           enable-cache: true
-          cache-suffix: fix-check
+          cache-suffix: release
           cache-dependency-glob: |
             uv.lock
-            ${{ steps.extract-mise-tools.outputs.pipx }}
 
       - name: Import to Ansible Galaxy
         run: >-
