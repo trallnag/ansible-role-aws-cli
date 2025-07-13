@@ -106,7 +106,7 @@ repos:
         alias: ansible-lint (check)
         name: Lint Ansible files with ansible-lint
         require_serial: true
+        pass_filenames: false
+        always_run: true
         language: system
         entry: uv run ansible-lint
-        files: ^(meta|molecule|tasks|vars)/
-        types: [yaml]
