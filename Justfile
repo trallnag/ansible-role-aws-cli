@@ -93,7 +93,7 @@ check--shellcheck:
 
 # Lint Ansible files with ansible-lint.
 check--ansible:
-  uv run ansible-lint ./meta ./molecule ./tasks ./vars
+  uv run ansible-lint
 
 # Test role with Molecule.
 test:
