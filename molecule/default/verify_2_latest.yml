@@ -1,4 +1,4 @@
-- name: Verify
+- name: Verify 2 Latest
   hosts: all
 
   tasks:
@@ -42,5 +42,5 @@
         that:
           - installed_version == latest_version
         fail_msg: >-
-          `installed_version` is "{{ installed_version }}",
-          but must be "{{ latest_version }}".
+          `installed_version` is "{{ installed_version }}", but must be "{{
+          latest_version }}".

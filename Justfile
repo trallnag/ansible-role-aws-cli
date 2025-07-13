@@ -97,7 +97,7 @@ check--ansible:
 
 # Test role with Molecule.
 test:
-  uv run molecule test
+  uv run molecule test -s default
 
 # Create release notes based on changelog.
 [group('misc')]

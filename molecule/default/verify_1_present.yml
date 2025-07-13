@@ -1,4 +1,4 @@
-- name: Verify
+- name: Verify 1 Present
   hosts: all
 
   tasks:
@@ -19,28 +19,10 @@
         installed_version: >-
           {{ get_installed_version.stdout | regex_search(".+\..+\..+") }}
 
-    - name: Get latest version
-      ansible.builtin.shell:
-        executable: /usr/bin/bash
-        cmd: |
-          set -euo pipefail
-          curl --silent --fail-with-body --range 0-2048 {{ changelog_url }} \
-            | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
-            | head -n 1
-      vars:
-        changelog_url: https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst
-      changed_when: false
-      register: get_latest_version
-
-    - name: Set latest version fact
-      ansible.builtin.set_fact:
-        latest_version: >-
-          {{ get_latest_version.stdout | regex_search(".+\..+\..+") }}
-
     - name: Assert installed version correct
       ansible.builtin.assert:
         that:
-          - installed_version == latest_version
+          - installed_version == "2.27.49"
         fail_msg: >-
           `installed_version` is "{{ installed_version }}",
-          but must be "{{ latest_version }}".
+          but must be "2.27.49".

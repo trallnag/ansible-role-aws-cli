@@ -3,10 +3,10 @@
 
   pre_tasks:
     - name: Update APT cache
+      when: ansible_os_family == "Debian"
       ansible.builtin.apt:
         update_cache: true
         cache_valid_time: 600
-      when: ansible_os_family == "Debian"
       changed_when: false
 
   tasks:
@@ -14,4 +14,4 @@
       ansible.builtin.include_role:
         name: trallnag.aws_cli
       vars:
-        aws_cli_version: "2.15.51"
+        aws_cli_version: "2.27.49"
