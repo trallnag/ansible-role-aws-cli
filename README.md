@@ -15,10 +15,11 @@ Also consider:
 
 - [Requirements](#requirements)
 - [Role Parameters](#role-parameters)
-- [Project Status](#project-status)
-- [Template](#template)
+- [Project status](#project-status)
+- [Versioning](#versioning)
 - [Contributing](#contributing)
 - [Licensing](#licensing)
+- [Template](#template)
 
 ## Requirements
 
@@ -49,35 +50,32 @@ aws_cli__bin_dir:
 aws_cli__install_dir:
   required: false
   type: str
-  default: /opt/aws-cli
+  default: /usr/local/aws-cli
   description:
     - Install directory. Used for `--install-dir` parameter.
 ```
 
-## Project Status
+## Project status
 
-Maintained and actively used.
+The project is maintained by me, [Tim](https://github.com/trallnag), and I am
+interested in keeping it alive as I am actively using it.
 
-## Template
+## Versioning
 
-This repository is based on the
-[Copier](https://copier.readthedocs.io/en/stable/) template
-[trallnag/copier-template-ansible-role](https://github.com/trallnag/copier-template-ansible-role).
+The project follows [Semantic Versioning](https://semver.org/).
 
 ## Contributing
 
-Contributions are welcome. Please refer to [`CONTRIBUTING.md`](CONTRIBUTING).
-
-Consult [`DEVELOPMENT.md`](DEVELOPMENT.md) for guidance regarding development.
-
-Read [`RELEASE.md`](RELEASE.md) for details about the release process.
+Contributions are welcome. Please refer to [`CONTRIBUTE.md`](./CONTRIBUTE.md).
 
 ## Licensing
 
 This work is licensed under the
-[Apache License](https://choosealicense.com/licenses/apache-2.0) (Apache-2.0), a
-permissive license whose main conditions require preservation of copyright and
-license notices. See [`LICENSE`](LICENSE) for the license text.
+[ISC license](https://en.wikipedia.org/wiki/ISC_license). See
+[`LICENSE`](./LICENSE) for the license text.
 
-This work comes with an explicit [`NOTICE`](NOTICE) file containing additional
-legal notices and information.
+## Template
+
+This project is based on the following
+[Copier](https://copier.readthedocs.io/en/stable/) template:
+<https://github.com/trallnag/copier-template-ansible-role>.
