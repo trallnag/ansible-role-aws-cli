@@ -1,4 +1,4 @@
-__aws_cli_packages:
+_aws_cli__packages:
   - curl
   - gnupg2
   - gpg-agent

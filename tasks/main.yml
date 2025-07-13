@@ -1,90 +1,90 @@
 - name: Include OS-specific variables
   ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Set packages to install
-  when: aws_cli_packages is not defined
+- name: Set packages to install fact
+  when: aws_cli__packages is not defined
   ansible.builtin.set_fact:
-    aws_cli_packages: "{{ __aws_cli_packages | list }}"
+    aws_cli__packages: "{{ _aws_cli__packages | list }}"
 
 - name: Install dependencies
   ansible.builtin.package:
-    name: "{{ aws_cli_packages }}"
+    name: "{{ aws_cli__packages }}"
     state: present
   become: true
 
 - name: Get installed version
   ansible.builtin.shell:
+    executable: /usr/bin/bash
     cmd: |
       set -euo pipefail
       export PATH=/usr/local/bin:$PATH
       if command -v aws &> /dev/null; then
         aws --version | sed -E 's/aws-cli\/(.+) Python.*/\1/'
       fi
-    executable: /usr/bin/bash
-  register: aws_cli_get_installed_version
   changed_when: false
+  register: aws_cli__get_installed_version
 
-- name: Set installed version
+- name: Set installed version fact
   ansible.builtin.set_fact:
-    aws_cli_installed_version: >-
-      {{ aws_cli_get_installed_version.stdout | regex_search(".+\..+\..+") }}
+    aws_cli__installed_version: >-
+      {{ aws_cli__get_installed_version.stdout | regex_search(".+\..+\..+") }}
 
-- name: Print installed version
+- name: Print installed version fact
   ansible.builtin.debug:
-    var: aws_cli_installed_version
+    var: aws_cli__installed_version
 
-- name: Set empty archive URL
+- name: Set empty archive URL fact
   ansible.builtin.set_fact:
-    aws_cli_archive_url: ""
+    aws_cli__archive_url: ""
 
-- name: Set archive URL for target exact
+- name: Set archive URL fact for target exact
   when: >-
     aws_cli__version not in ["present", "latest"]
-    and aws_cli_installed_version != aws_cli__version
+    and aws_cli__installed_version != aws_cli__version
   ansible.builtin.set_fact:
-    aws_cli_archive_url: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}-{{ aws_cli__version }}.zip
+    aws_cli__archive_url: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}-{{ aws_cli__version }}.zip
 
-- name: Set archive URL for target present
-  when: aws_cli__version == "present" and aws_cli_installed_version == ""
+- name: Set archive URL fact for target present
+  when: aws_cli__version == "present" and aws_cli__installed_version == ""
   ansible.builtin.set_fact:
-    aws_cli_archive_url: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}.zip
+    aws_cli__archive_url: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}.zip
 
 - name: Determine latest
   when: aws_cli__version == "latest"
   block:
     - name: Determine latest version
       ansible.builtin.shell:
+        executable: /usr/bin/bash
         cmd: |
           set -euo pipefail
-          curl --silent --fail-with-body --range 0-2048 {{ aws_cli_changelog_url }} \
+          curl --silent --fail-with-body --range 0-2048 {{ aws_cli__changelog_url }} \
             | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
             | head -n 1
-        executable: /usr/bin/bash
       vars:
-        aws_cli_changelog_url: https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst
-      register: aws_cli_get_latest_version
+        aws_cli__changelog_url: https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst
       changed_when: false
+      register: aws_cli_get_latest_version
 
-    - name: Set latest version
+    - name: Set latest version fact
       ansible.builtin.set_fact:
-        aws_cli_latest_version: >-
+        aws_cli__latest_version: >-
           {{ aws_cli_get_latest_version.stdout | regex_search(".+\..+\..+") }}
 
-    - name: Print latest version
+    - name: Print latest version fact
       ansible.builtin.debug:
-        var: aws_cli_latest_version
+        var: aws_cli__latest_version
 
-    - name: Set archive URL for target latest
-      when: aws_cli_installed_version != aws_cli_latest_version
+    - name: Set archive URL fact for target latest
+      when: aws_cli__installed_version != aws_cli__latest_version
       ansible.builtin.set_fact:
-        aws_cli_archive_url: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}.zip
+        aws_cli__archive_url: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}.zip
 
-- name: Print archive URL
+- name: Print archive URL fact
   ansible.builtin.debug:
-    var: aws_cli_archive_url
+    var: aws_cli__archive_url
 
 - name: Install
-  when: aws_cli_archive_url != ""
+  when: aws_cli__archive_url != ""
   become: true
   block:
     - name: Uninstall
@@ -99,61 +99,64 @@
     - name: Create tmp dir
       ansible.builtin.tempfile:
         state: directory
-      register: aws_cli_tmp_dir
+      register: aws_cli__tmp_dir
 
     - name: Download archive
       ansible.builtin.get_url:
-        url: "{{ aws_cli_archive_url }}"
-        dest: "{{ aws_cli_tmp_dir.path }}/awscliv2.zip"
-        force: true
+        url: "{{ aws_cli__archive_url }}"
+        dest: "{{ aws_cli__tmp_dir.path }}/awscliv2.zip"
         mode: u=rw,g=,o=
-      register: aws_cli_download_archive
+        force: true
+      register: aws_cli__download_archive
 
     - name: Download signature
       ansible.builtin.get_url:
-        url: "{{ aws_cli_archive_url }}.sig"
-        dest: "{{ aws_cli_tmp_dir.path }}/awscliv2.zip.sig"
-        force: true
+        url: "{{ aws_cli__archive_url }}.sig"
+        dest: "{{ aws_cli__tmp_dir.path }}/awscliv2.zip.sig"
         mode: u=rw,g=,o=
-      register: aws_cli_download_signature
+        force: true
+      register: aws_cli__download_signature
 
     - name: Place public key
       ansible.builtin.copy:
         src: aws-cli-public-key.asc
-        dest: "{{ aws_cli_tmp_dir.path }}"
+        dest: "{{ aws_cli__tmp_dir.path }}"
         mode: u=rw,g=,o=
-      register: aws_cli_public_key
+      register: aws_cli__public_key
 
     - name: Verify integrity
       ansible.builtin.shell:
+        executable: /usr/bin/bash
         cmd: |
           set -euo pipefail
 
-          export GNUPGHOME="{{ aws_cli_tmp_dir.path }}/gnupg"
+          export GNUPGHOME="{{ aws_cli__tmp_dir.path }}/gnupg"
           mkdir -m 0700 "$GNUPGHOME"
 
-          gpg --yes --import "{{ aws_cli_public_key.dest }}"
+          gpg --yes --import "{{ aws_cli__public_key.dest }}"
 
           gpg --verify \
-            {{ aws_cli_download_signature.dest }} \
-            {{ aws_cli_download_archive.dest }}
-        executable: /usr/bin/bash
+            {{ aws_cli__download_signature.dest }} \
+            {{ aws_cli__download_archive.dest }}
       changed_when: false
 
     - name: Unzip archive
       ansible.builtin.unarchive:
-        src: "{{ aws_cli_download_archive.dest }}"
-        dest: "{{ aws_cli_tmp_dir.path }}"
+        src: "{{ aws_cli__download_archive.dest }}"
+        dest: "{{ aws_cli__tmp_dir.path }}"
         remote_src: true
-      register: unzip_archive
+      register: aws_cli__unzip_archive
 
     - name: Install
-      ansible.builtin.command: >-
-        {{ unzip_archive.dest }}/aws/install
-        --bin-dir {{ aws_cli__bin_dir }}
-        --install-dir {{ aws_cli__install_dir }}
+      ansible.builtin.command:
+        cmd: >-
+          {{ aws_cli__unzip_archive.dest }}/aws/install
+          --bin-dir {{ aws_cli__bin_dir }}
+          --install-dir {{ aws_cli__install_dir }}
       changed_when: true
 
     - name: Test executable
-      ansible.builtin.command: aws --version
+      ansible.builtin.command:
+        cmd: >-
+          {{ aws_cli__bin_dir }}/aws --version
       changed_when: false
