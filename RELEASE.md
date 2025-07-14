@@ -34,7 +34,6 @@ Move the content of the "Unreleased" section that will be included in the new
 release to a new section with an appropriate title for the release. Should the
 "Unreleased" section now be empty, add "Nothing." to it.
 
-
 ## Trigger
 
 Commit the changes. Make sure to sign the commit:
@@ -51,9 +50,9 @@ Push changes:
 git push origin master
 ```
 
-Check
-[workflow runs](https://github.com/trallnag/{{ project_name }}/actions?query=branch%3Amaster)
-in GitHub Actions and ensure everything is fine.
+Check \[workflow runs\](https://github.com/trallnag/{{ project_name
+}}/actions?query=branch%3Amaster) in GitHub Actions and ensure everything is
+fine.
 
 Tag the latest commit with an annotated and signed tag:
 
@@ -87,7 +86,7 @@ which will import the role to Ansible Galaxy and create a release draft.
 ## Wrap up
 
 If everything is fine, go to the release page of this project on GitHub
-[here](https://github.com/trallnag/ansible-role-aws-cli/releases) and review
-the automatically created release draft.
+[here](https://github.com/trallnag/ansible-role-aws-cli/releases) and review the
+automatically created release draft.
 
 Publish the draft.
