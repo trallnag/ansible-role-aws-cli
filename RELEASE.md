@@ -20,8 +20,7 @@ VERSION=1.0.1
 Bump the version constant in [`pyproject.toml`](./pyproject.toml):
 
 ```sh
-sed --in-place "s/^version = \".*\"/version = \"$VERSION\"/" \
-  pyproject.toml
+sed --in-place "s/^version = \".*\"/version = \"$VERSION\"/" pyproject.toml
 uv sync
 ```
 

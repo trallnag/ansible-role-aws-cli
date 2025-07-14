@@ -7,6 +7,10 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0).
 
 ## Unreleased
 
+Nothing.
+
+## [1.0.0](https://github.com/trallnag/ansible-role-aws-cli/compare/v0.6.0...v1.0.0) / 2025-07-14
+
 ### Changed
 
 - Updated documentation.
