@@ -50,9 +50,9 @@ Push changes:
 git push origin master
 ```
 
-Check \[workflow runs\](https://github.com/trallnag/{{ project_name
-}}/actions?query=branch%3Amaster) in GitHub Actions and ensure everything is
-fine.
+Check
+[workflow runs](https://github.com/trallnag/ansible-role-aws-cli/actions?query=branch%3Amaster)
+in GitHub Actions and ensure everything is fine.
 
 Tag the latest commit with an annotated and signed tag:
 
