@@ -1,4 +1,9 @@
-# Ansible Role `trallnag.aws_cli` <!-- omit from toc -->
+[![status](https://img.shields.io/badge/status-active-brightgreen)](#project-status)
+[![release](https://img.shields.io/github/v/release/trallnag/ansible-role-aws-cli)](https://github.com/trallnag/ansible-role-aws-cli/releases)
+[![ci](https://img.shields.io/github/actions/workflow/status/trallnag/ansible-role-aws-cli/ci.yaml?label=ci)](https://github.com/trallnag/ansible-role-aws-cli/actions/workflows/ci.yaml)
+[![release](https://img.shields.io/github/actions/workflow/status/trallnag/ansible-role-aws-cli/release.yaml?label=release)](https://github.com/trallnag/ansible-role-aws-cli/actions/workflows/release.yaml)
+
+# Ansible Role `trallnag.aws_cli`
 
 Role that installs the [AWS CLI v2](https://github.com/aws/aws-cli/tree/v2)
 using the official installer.
@@ -11,24 +16,14 @@ Also consider:
 - [trallnag/ansible-role-aws-ssm-plugin](https://github.com/trallnag/ansible-role-aws-ssm-plugin)
 - [trallnag/ansible-role-aws-sam-cli](https://github.com/trallnag/ansible-role-aws-sam-cli)
 
-## Table of Contents <!-- omit from toc -->
-
-- [Requirements](#requirements)
-- [Role Parameters](#role-parameters)
-- [Project status](#project-status)
-- [Versioning](#versioning)
-- [Contributing](#contributing)
-- [Licensing](#licensing)
-- [Template](#template)
-
 ## Requirements
 
 Some tasks require root privileges. Privilege escalation is performed with
 explicit `become: true` statements.
 
-## Role Parameters
+## Role parameters
 
-See [`meta/argument_specs.yml`](meta/argument_specs.yml).
+See [`meta/argument_specs.yml`](./meta/argument_specs.yml).
 
 ```yaml
 aws_cli__version:

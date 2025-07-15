@@ -8,5 +8,5 @@
   tasks:
     - name: Do nothing.
       ansible.builtin.debug:
-        msg: This is a dummy side effect task.
+        msg: Nothing to do.
       changed_when: false
