@@ -48,5 +48,5 @@ jobs:
           --server https://galaxy.ansible.com/api/
           --token "${{ secrets.ANSIBLE_GALAXY_API_TOKEN }}"
           --role-name aws_cli
-          ${{ github.event.repository.owner.login }}
-          ${{ github.event.repository.name }}
+          "${{ github.event.repository.owner.login }}"
+          "${{ github.event.repository.name }}"

@@ -76,7 +76,7 @@ jobs:
           echo "mdformat-version=$mdformat_version" | tee -a $GITHUB_OUTPUT
 
       - name: Install mdformat
-        run: uv tool install mdformat@${{ steps.determine-mdformat-version.outputs.mdformat-version }}
+        run: uv tool install "mdformat@${{ steps.determine-mdformat-version.outputs.mdformat-version }}"
 
       - name: Create release notes
         run: just create-release-notes
@@ -87,8 +87,8 @@ jobs:
           --server https://galaxy.ansible.com/api/
           --token "${{ secrets.ANSIBLE_GALAXY_API_TOKEN }}"
           --role-name aws_cli
-          ${{ github.event.repository.owner.login }}
-          ${{ github.event.repository.name }}
+          "${{ github.event.repository.owner.login }}"
+          "${{ github.event.repository.name }}"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8 # v2.3.2
