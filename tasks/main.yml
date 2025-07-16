@@ -49,19 +49,19 @@
   ansible.builtin.set_fact:
     aws_cli__archive_url: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}.zip
 
-- name: Determine latest
+- name: Determine archive URL fact for target latest
   when: aws_cli__version == "latest"
   block:
-    - name: Determine latest version
+    - name: Get latest version
       ansible.builtin.shell:
         executable: /usr/bin/bash
         cmd: |
           set -euo pipefail
-          curl --silent --fail-with-body --range 0-2048 {{ aws_cli__changelog_url }} \
+          curl --silent --fail-with-body --range 0-2048 {{ changelog_url }} \
             | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
             | head -n 1
       vars:
-        aws_cli__changelog_url: https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst
+        changelog_url: https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst
       changed_when: false
       register: aws_cli_get_latest_version
 
@@ -122,7 +122,7 @@
         src: aws-cli-public-key.asc
         dest: "{{ aws_cli__tmp_dir.path }}"
         mode: u=rw,g=,o=
-      register: aws_cli__public_key
+      register: aws_cli__place_public_key
 
     - name: Verify integrity
       ansible.builtin.shell:
@@ -130,10 +130,10 @@
         cmd: |
           set -euo pipefail
 
-          export GNUPGHOME="{{ aws_cli__tmp_dir.path }}/gnupg"
-          mkdir -m 0700 "$GNUPGHOME"
+          export GNUPGHOME={{ aws_cli__tmp_dir.path }}/gnupg
+          mkdir -m 0700 $GNUPGHOME
 
-          gpg --yes --import "{{ aws_cli__public_key.dest }}"
+          gpg --yes --import {{ aws_cli__place_public_key.dest }}
 
           gpg --verify \
             {{ aws_cli__download_signature.dest }} \
